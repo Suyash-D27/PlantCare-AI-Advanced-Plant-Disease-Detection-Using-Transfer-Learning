@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Our Technology - PlantCare AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        .mission-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        .mission-image {
+            background: #e6f7ef;
+            border-radius: var(--radius);
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+        .mission-image i {
+            font-size: 8rem;
+            color: var(--primary);
+        }
+        .step-card {
+            text-align: center;
+            padding: 30px;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 700;
+        }
+        .model-specs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .spec-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .spec-label {
+            display: block;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .benefit-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .benefit-card i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}" class="logo">
+            <i class="fas fa-leaf"></i> PlantCare AI
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('upload') }}" class="btn-nav">Get Started</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>About Our Technology</h1>
+            <p class="subtitle">Transforming agriculture with artificial intelligence</p>
+        </header>
+
+        <section class="about-grid">
+            <div class="mission-content">
+                <h2>Our Mission</h2>
+                <p>We are committed to revolutionizing plant health management through cutting-edge artificial intelligence. Our goal is to empower farmers, gardeners, and agricultural professionals with instant, accurate disease detection to protect crops and increase yields.</p>
+                <br>
+                <p>By making advanced AI technology accessible to everyone, we help prevent crop losses, reduce pesticide use, and promote sustainable farming practices.</p>
+            </div>
+            <div class="mission-image">
+                <i class="fas fa-microscope"></i>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 80px;">
+            <h3 style="text-align: center; margin-bottom: 40px;">How It Works</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>Upload Image</h4>
+                    <p class="footer-info">Take a photo of your plant leaf showing symptoms or upload an existing image.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>AI Analysis</h4>
+                    <p class="footer-info">Our MobileNetV2 model processes the image using deep learning algorithms.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>Get Results</h4>
+                    <p class="footer-info">Receive instant diagnosis with plant type and condition identification.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" style="margin-bottom: 80px; text-align: center;">
+            <h3>Our AI Model</h3>
+            <div class="model-specs">
+                <div class="spec-item">
+                    <span class="spec-label">Architecture</span>
+                    <p>MobileNetV2 with transfer learning</p>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Training Data</span>
+                    <p>Thousands of labeled plant images</p>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Supported Plants</span>
+                    <p>Apple, Tomato, Potato, Grape, Corn, and more</p>
+                </div>
+            </div>
+            <div style="margin-top: 20px;" class="spec-item">
+                <span class="spec-label">Disease Coverage</span>
+                <p>38+ different diseases and healthy conditions</p>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 80px;">
+            <h3 style="margin-bottom: 30px;">Benefits</h3>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-seedling" style="color: #2ecc71;"></i>
+                    <h4>Early Detection</h4>
+                    <p class="footer-info">Identify diseases before they spread</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-hand-holding-usd" style="color: #f1c40f;"></i>
+                    <h4>Cost Effective</h4>
+                    <p class="footer-info">Reduce crop losses and treatment costs</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-globe-americas" style="color: #3498db;"></i>
+                    <h4>Sustainable</h4>
+                    <p class="footer-info">Minimize unnecessary pesticide use</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-bolt" style="color: #e67e22;"></i>
+                    <h4>Fast & Accurate</h4>
+                    <p class="footer-info">Get results in seconds with high precision</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center;">
+            <h3>Try It Now</h3>
+            <p class="subtitle" style="margin-bottom: 20px;">Experience the power of AI-driven plant disease detection</p>
+            <a href="{{ url_for('upload') }}" class="btn">Start Detection</a>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand"><i class="fas fa-graduation-cap"></i> Smart Bridge Hyderabad</div>
+            <p class="footer-info">Empowering agriculture through innovative AI solutions.</p>
+            <p class="footer-info">&copy; 2026 Smart Bridge Hyderabad. All rights reserved.</p>
+        </div>
+        
+        <div style="margin-top: 30px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 20px;">
+             <div class="logo" style="font-size: 1rem;"><i class="fas fa-leaf"></i> PlantCare AI</div>
+             <div class="nav-links" style="display: flex;">
+                <a href="{{ url_for('upload') }}">Home</a>
+                <a href="{{ url_for('about') }}" style="margin-left: 20px;">About</a>
+                <a href="{{ url_for('upload') }}" class="btn-nav" style="margin-left: 20px; font-size: 0.8rem;">New Analysis</a>
+             </div>
+        </div>
+    </footer>
+</body>
+</html>

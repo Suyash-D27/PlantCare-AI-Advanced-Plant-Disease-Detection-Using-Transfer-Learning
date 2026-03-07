@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Plant Image - PlantCare AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}" class="logo">
+            <i class="fas fa-leaf"></i> PlantCare AI
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('upload') }}" class="btn-nav">Get Started</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Upload Plant Image</h1>
+            <p class="subtitle">Take or upload a clear photo of the affected plant leaf</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <form id="upload-form">
+                    <div class="upload-box" onclick="document.getElementById('file-input').click()" id="drop-zone">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <h3>Drag & Drop Image Here</h3>
+                        <p>or click to browse from your device</p>
+                        <span style="font-size: 0.8rem; color: #999;">Supported formats: JPG, JPEG, PNG (Max 10MB)</span>
+                        <input type="file" name="file" id="file-input" accept="image/*" hidden>
+                    </div>
+
+                    <div id="preview-section" style="display: none; text-align: center; margin-bottom: 20px;">
+                        <img id="image-preview" src="#" alt="Preview" style="max-width: 300px; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow);">
+                        <div>
+                            <button type="submit" class="btn" id="analyze-btn">
+                                <i class="fas fa-search-plus"></i> Analyze Health
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="tips-grid">
+                <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 10px;">
+                    <h4 style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fas fa-briefcase"></i> Tips for Best Results
+                    </h4>
+                </div>
+                <div class="tip-item"><i class="fas fa-check"></i> Take photos in good lighting</div>
+                <div class="tip-item"><i class="fas fa-check"></i> Focus on the affected leaf area</div>
+                <div class="tip-item"><i class="fas fa-check"></i> Keep the camera steady</div>
+                <div class="tip-item"><i class="fas fa-check"></i> Avoid blurry images</div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand"><i class="fas fa-graduation-cap"></i> Smart Bridge Hyderabad</div>
+            <p class="footer-info">Empowering agriculture through innovative AI solutions.</p>
+            <p class="footer-info">&copy; 2026 Smart Bridge Hyderabad. All rights reserved.</p>
+        </div>
+        
+        <div style="margin-top: 30px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 20px;">
+             <div class="logo" style="font-size: 1rem;"><i class="fas fa-leaf"></i> PlantCare AI</div>
+             <div class="nav-links" style="display: flex;">
+                <a href="{{ url_for('upload') }}">Home</a>
+                <a href="{{ url_for('about') }}" style="margin-left: 20px;">About</a>
+                <a href="{{ url_for('upload') }}" class="btn-nav" style="margin-left: 20px; font-size: 0.8rem;">New Analysis</a>
+             </div>
+        </div>
+    </footer>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const previewSection = document.getElementById('preview-section');
+        const imagePreview = document.getElementById('image-preview');
+        const dropZone = document.getElementById('drop-zone');
+
+        fileInput.onchange = e => {
+            const [file] = fileInput.files;
+            if (file) {
+                imagePreview.src = URL.createObjectURL(file);
+                previewSection.style.display = 'block';
+                dropZone.style.display = 'none';
+            }
+        };
+
+        const form = document.getElementById('upload-form');
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('analyze-btn');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                if (result.success) {
+                    window.location.href = '/result';
+                } else {
+                    alert('Error: ' + result.error);
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                alert('An error occurred.');
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>

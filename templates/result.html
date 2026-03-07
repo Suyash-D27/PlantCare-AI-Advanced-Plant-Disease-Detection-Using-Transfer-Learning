@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Complete - PlantCare AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}" class="logo">
+            <i class="fas fa-leaf"></i> PlantCare AI
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('upload') }}" class="btn-nav">New Analysis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Analysis Complete</h1>
+            <p class="subtitle">Here's what we found</p>
+        </header>
+
+        <main class="card">
+            <div class="result-grid">
+                <div class="result-image-container">
+                    <h4>Uploaded Image</h4>
+                    <img src="{{ url_for('static', filename=image_path) }}" alt="Plant Leaf" class="result-image">
+                </div>
+
+                <div class="result-content">
+                    <div class="status-badge">
+                        <i class="fas fa-exclamation-triangle"></i> Disease Detected
+                    </div>
+
+                    <!-- Try to separate plant name from disease if possible, otherwise show full label -->
+                    <div class="info-item">
+                        <span class="info-label">Plant Type</span>
+                        <span class="info-value">Detected Leaf</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Condition</span>
+                        <span class="info-value disease-value">{{ prediction }}</span>
+                        <small style="color: var(--text-muted); font-size: 0.75rem; margin-top: 5px; display: block;">
+                            Confidence Score: {{ confidence }}%
+                        </small>
+                    </div>
+
+                    <div class="recommendations">
+                        <h5><i class="fas fa-bolt"></i> Recommended Actions</h5>
+                        <ul>
+                            <li>Isolate affected plants to prevent spread</li>
+                            <li>Consult with an agricultural expert</li>
+                            <li>Consider appropriate treatment methods</li>
+                            <li>Monitor other plants for similar symptoms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center;">
+                <a href="{{ url_for('upload') }}" class="btn"><i class="fas fa-redo"></i> Analyze Another Image</a>
+                <a href="{{ url_for('upload') }}" class="btn btn-outline"><i class="fas fa-home"></i> Back to Home</a>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand"><i class="fas fa-graduation-cap"></i> Smart Bridge Hyderabad</div>
+            <p class="footer-info">Empowering agriculture through innovative AI solutions.</p>
+            <p class="footer-info">&copy; 2026 Smart Bridge Hyderabad. All rights reserved.</p>
+        </div>
+        
+        <div style="margin-top: 30px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 20px;">
+             <div class="logo" style="font-size: 1rem;"><i class="fas fa-leaf"></i> PlantCare AI</div>
+             <div class="nav-links" style="display: flex;">
+                <a href="{{ url_for('upload') }}">Home</a>
+                <a href="{{ url_for('about') }}" style="margin-left: 20px;">About</a>
+                <a href="{{ url_for('upload') }}" class="btn-nav" style="margin-left: 20px; font-size: 0.8rem;">New Analysis</a>
+             </div>
+        </div>
+    </footer>
+</body>
+</html>

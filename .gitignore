@@ -3,3 +3,11 @@ kaggle.json
 *.h5
 __pycache__/
 .ipynb_checkpoints/
+.env
+venv/
+.vscode/
+walkthrough.md
+task.md
+refrences/
+implementation_plan.md
+test image.jpg
