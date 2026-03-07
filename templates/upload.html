@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <nav>
         <a href="{{ url_for('index') }}" class="logo">
@@ -33,12 +35,14 @@
                         <i class="fas fa-cloud-upload-alt upload-icon"></i>
                         <h3>Drag & Drop Image Here</h3>
                         <p>or click to browse from your device</p>
-                        <span style="font-size: 0.8rem; color: #999;">Supported formats: JPG, JPEG, PNG (Max 10MB)</span>
+                        <span style="font-size: 0.8rem; color: #999;">Supported formats: JPG, JPEG, PNG (Max
+                            10MB)</span>
                         <input type="file" name="file" id="file-input" accept="image/*" hidden>
                     </div>
 
                     <div id="preview-section" style="display: none; text-align: center; margin-bottom: 20px;">
-                        <img id="image-preview" src="#" alt="Preview" style="max-width: 300px; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow);">
+                        <img id="image-preview" src="#" alt="Preview"
+                            style="max-width: 300px; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow);">
                         <div>
                             <button type="submit" class="btn" id="analyze-btn">
                                 <i class="fas fa-search-plus"></i> Analyze Health
@@ -68,15 +72,7 @@
             <p class="footer-info">Empowering agriculture through innovative AI solutions.</p>
             <p class="footer-info">&copy; 2026 Smart Bridge Hyderabad. All rights reserved.</p>
         </div>
-        
-        <div style="margin-top: 30px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 20px;">
-             <div class="logo" style="font-size: 1rem;"><i class="fas fa-leaf"></i> PlantCare AI</div>
-             <div class="nav-links" style="display: flex;">
-                <a href="{{ url_for('upload') }}">Home</a>
-                <a href="{{ url_for('about') }}" style="margin-left: 20px;">About</a>
-                <a href="{{ url_for('upload') }}" class="btn-nav" style="margin-left: 20px; font-size: 0.8rem;">New Analysis</a>
-             </div>
-        </div>
+
     </footer>
 
     <script>
@@ -124,4 +120,5 @@
         };
     </script>
 </body>
+
 </html>

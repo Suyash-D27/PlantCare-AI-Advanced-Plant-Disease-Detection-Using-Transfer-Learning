@@ -193,6 +193,25 @@ h1 {
     background: #fff5f5;
 }
 
+.status-badge.healthy {
+    border-color: var(--success);
+    color: var(--success);
+    background: #f0fdf4;
+}
+
+.value-healthy {
+    color: var(--success) !important;
+}
+
+.recommendations.healthy {
+    background: #f0fdf4;
+}
+
+.recommendations.healthy h5,
+.recommendations.healthy li::before {
+    color: var(--success);
+}
+
 .info-item {
     margin-bottom: 25px;
 }

@@ -50,16 +50,24 @@ def load_model_file():
 # Image prediction   
 def predict_image(image_path):
 
-    img = Image.open(image_path)
+    img = Image.open(image_path).convert("RGB")
+    # Resize to model input size
     img = img.resize((224, 224))
 
-    img = np.array(img) / 255.0
-    img = np.expand_dims(img, axis=0)
+    # Convert to numpy array
+    img_array = np.array(img, dtype=np.float32)
 
-    prediction = model.predict(img)
+    # Normalize pixel values
+    img_array = img_array / 255.0
 
-    predicted_class_idx = np.argmax(prediction)
-    confidence = float(np.max(prediction))
+    # Add batch dimension
+    img_array = np.expand_dims(img_array, axis=0)
+
+    # Predict
+    predictions = model.predict(img_array)
+
+    predicted_class_idx = np.argmax(predictions[0])
+    confidence = float(np.max(predictions[0]))
 
     return class_names[predicted_class_idx], confidence
 
@@ -110,7 +118,10 @@ def predict():
                 app.config["STATIC_FOLDER"], "images", static_filename
             )
 
-            Image.open(filepath).save(static_path)
+            # Convert to RGB before saving as JPEG to avoid RGBA error
+            rgba_image = Image.open(filepath)
+            rgb_image = rgba_image.convert("RGB")
+            rgb_image.save(static_path, "JPEG")
 
             # Store result in session
             session["prediction"] = prediction
@@ -137,6 +148,10 @@ def result():
     confidence = session.get("confidence")
     image_path = session.get("image_path")
 
+    is_healthy = False
+    if prediction and "healthy" in prediction.lower():
+        is_healthy = True
+
     if not prediction:
         return redirect(url_for("upload"))
 
@@ -144,7 +159,8 @@ def result():
         "result.html",
         prediction=prediction,
         confidence=confidence,
-        image_path=image_path
+        image_path=image_path,
+        is_healthy=is_healthy
     )
 
 

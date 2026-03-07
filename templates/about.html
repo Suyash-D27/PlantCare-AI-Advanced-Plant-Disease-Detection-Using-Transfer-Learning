@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,11 +16,13 @@
             align-items: center;
             margin-bottom: 80px;
         }
+
         .mission-content h2 {
             font-size: 2rem;
             margin-bottom: 20px;
             color: var(--secondary);
         }
+
         .mission-image {
             background: #e6f7ef;
             border-radius: var(--radius);
@@ -29,14 +32,17 @@
             align-items: center;
             box-shadow: var(--shadow);
         }
+
         .mission-image i {
             font-size: 8rem;
             color: var(--primary);
         }
+
         .step-card {
             text-align: center;
             padding: 30px;
         }
+
         .step-number {
             width: 40px;
             height: 40px;
@@ -49,30 +55,35 @@
             margin: 0 auto 20px;
             font-weight: 700;
         }
+
         .model-specs {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin-top: 40px;
         }
+
         .spec-item {
             background: #f8f9fa;
             padding: 20px;
             border-radius: 12px;
             text-align: center;
         }
+
         .spec-label {
             display: block;
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 5px;
         }
+
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
             margin-top: 40px;
         }
+
         .benefit-card {
             background: white;
             padding: 30px 20px;
@@ -80,12 +91,14 @@
             text-align: center;
             box-shadow: var(--shadow);
         }
+
         .benefit-card i {
             font-size: 2rem;
             margin-bottom: 15px;
         }
     </style>
 </head>
+
 <body>
     <nav>
         <a href="{{ url_for('index') }}" class="logo">
@@ -107,9 +120,12 @@
         <section class="about-grid">
             <div class="mission-content">
                 <h2>Our Mission</h2>
-                <p>We are committed to revolutionizing plant health management through cutting-edge artificial intelligence. Our goal is to empower farmers, gardeners, and agricultural professionals with instant, accurate disease detection to protect crops and increase yields.</p>
+                <p>We are committed to revolutionizing plant health management through cutting-edge artificial
+                    intelligence. Our goal is to empower farmers, gardeners, and agricultural professionals with
+                    instant, accurate disease detection to protect crops and increase yields.</p>
                 <br>
-                <p>By making advanced AI technology accessible to everyone, we help prevent crop losses, reduce pesticide use, and promote sustainable farming practices.</p>
+                <p>By making advanced AI technology accessible to everyone, we help prevent crop losses, reduce
+                    pesticide use, and promote sustainable farming practices.</p>
             </div>
             <div class="mission-image">
                 <i class="fas fa-microscope"></i>
@@ -122,7 +138,8 @@
                 <div class="step-card">
                     <div class="step-number">1</div>
                     <h4>Upload Image</h4>
-                    <p class="footer-info">Take a photo of your plant leaf showing symptoms or upload an existing image.</p>
+                    <p class="footer-info">Take a photo of your plant leaf showing symptoms or upload an existing image.
+                    </p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">2</div>
@@ -187,7 +204,8 @@
 
         <section style="text-align: center;">
             <h3>Try It Now</h3>
-            <p class="subtitle" style="margin-bottom: 20px;">Experience the power of AI-driven plant disease detection</p>
+            <p class="subtitle" style="margin-bottom: 20px;">Experience the power of AI-driven plant disease detection
+            </p>
             <a href="{{ url_for('upload') }}" class="btn">Start Detection</a>
         </section>
     </div>
@@ -198,15 +216,7 @@
             <p class="footer-info">Empowering agriculture through innovative AI solutions.</p>
             <p class="footer-info">&copy; 2026 Smart Bridge Hyderabad. All rights reserved.</p>
         </div>
-        
-        <div style="margin-top: 30px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 20px;">
-             <div class="logo" style="font-size: 1rem;"><i class="fas fa-leaf"></i> PlantCare AI</div>
-             <div class="nav-links" style="display: flex;">
-                <a href="{{ url_for('upload') }}">Home</a>
-                <a href="{{ url_for('about') }}" style="margin-left: 20px;">About</a>
-                <a href="{{ url_for('upload') }}" class="btn-nav" style="margin-left: 20px; font-size: 0.8rem;">New Analysis</a>
-             </div>
-        </div>
     </footer>
 </body>
+
 </html>
